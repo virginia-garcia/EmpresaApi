@@ -1,0 +1,120 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EmpresaApi.Models;
+using EmpresaApi.Repositories;
+
+namespace EmpresaApi.Controllers
+{
+    
+    [Route("api/[controller]")]
+    [ApiController] 
+    public class EmpleadosController : ControllerBase
+    {
+        private readonly IEmpresaRepository _repository; 
+
+        public EmpleadosController(IEmpresaRepository repository)
+        {
+            _repository = repository;
+        }
+
+        
+        [HttpGet("TodosLosEmpleados")]
+        public async Task<ActionResult<List<Employees>>> GetTodosLosEmpleadosAsync()
+        {
+            var empleados = await _repository.GetAllEmployeesAsync();
+            return Ok(empleados);
+        }
+
+        [HttpGet("CantidadEmpleados")]
+        public async Task<ActionResult<int>> GetCantidadEmpleadosAsync()
+        {
+            var count = await _repository.GetEmployeeCountAsync();
+            return Ok(count);
+        }
+        [HttpGet("EmpleadoPorID")]
+        public async Task<ActionResult<Employees>> GetEmpleadoPorIDAsync([FromQuery] int empleadoID)
+        {
+            var empleado = await _repository.GetEmployeeByIdAsync(empleadoID);
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+            return Ok(empleado);
+        }
+
+        [HttpGet("EmpleadosPorNombre")]
+        public async Task<ActionResult<Employees>> GetEmpleadoPorNombreAsync([FromQuery] string nombreEmpleado)
+        {
+            var empleado = await _repository.GetEmployeeByNameAsync(nombreEmpleado);
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+            return Ok(empleado);
+        }
+
+        [HttpGet("IDempleadoPorTitulo")]
+        public async Task<ActionResult<Employees>> GetEmpleadoPorTituloAsync([FromQuery] string titulo)
+        {
+            var empleado = await _repository.GetEmployeeByTitleAsync(titulo);
+             if (empleado == null)
+            {
+                return NotFound();
+            }
+            return Ok(empleado);
+        }
+
+        [HttpGet("EmpleadoPorPais")]
+        public async Task<ActionResult<Employees>> GetEmpleadoPorPaisAsync([FromQuery] string country)
+        {
+            var empleado = await _repository.GetOneEmployeeByCountryAsync(country);
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+            return Ok(empleado);
+        }
+        [HttpGet("TodosLosEmpleadosPorPais")]
+        public async Task<ActionResult<List<Employees>>> GetTodosLosEmpleadosPorPaisAsync([FromQuery] string country)
+        {
+            var empleados = await _repository.GetAllEmployeesByCountryAsync(country);
+            return Ok(empleados);
+        }
+
+        [HttpGet("ElEmpleadoMasGrande")]
+        public async Task<ActionResult<Employees>> GetElEmpleadoMasGrandeAsync()
+        {
+            var empleado = await _repository.GetOldestEmployeeAsync();
+            if (empleado == null)
+            {
+                 return NotFound("No hay empleados.");
+            }
+            return Ok(empleado);
+        }
+
+
+        [HttpGet("CantidadEmpleadosPorTitulos")]
+        public async Task<ActionResult<List<TituloCantidadDTO>>> GetCantidadEmpleadosPorTitulosAsync()
+        {
+            var estadisticas = await _repository.GetEmployeeCountByTitleAsync();
+            return Ok(estadisticas);
+        }
+
+
+        [HttpGet("ObtenerProductosConCategoria")]
+        public async Task<ActionResult<List<ProductoConCategoriaDTO>>> GetProductosConCategoriaAsync()
+        {
+            var productos = await _repository.GetProductsWithCategoryAsync();
+            return Ok(productos);
+        }
+
+        
+        [HttpGet("ObtenerProductosQueContienen")]
+        public async Task<ActionResult<List<Products>>> GetProductosQueContienenAsync([FromQuery] string palabra)
+        {
+            var productos = await _repository.GetProductsContainingWordAsync(palabra);
+            return Ok(productos);
+        }
+    }
+}
