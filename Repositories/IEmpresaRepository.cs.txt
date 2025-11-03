@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EmpresaApi.Models;
+
+namespace EmpresaApi.Repositories
+{
+    public interface IEmpresaRepository
+    {
+        // Consultar Empleados
+        Task<List<Employees>> GetAllEmployeesAsync();
+        Task<int> GetEmployeeCountAsync();
+        Task<Employees> GetEmployeeByIdAsync(int id);
+        Task<Employees> GetEmployeeByNameAsync(string name);
+        Task<Employees> GetEmployeeByTitleAsync(string title);
+        Task<Employees> GetOneEmployeeByCountryAsync(string country);
+        Task<List<Employees>> GetAllEmployeesByCountryAsync(string country);
+        Task<Employees> GetOldestEmployeeAsync();
+
+        
+        Task<List<TituloCantidadDTO>> GetEmployeeCountByTitleAsync();
+
+
+        Task<List<ProductoConCategoriaDTO>> GetProductsWithCategoryAsync();
+        Task<List<Products>> GetProductsContainingWordAsync(string word);
+    }
+}

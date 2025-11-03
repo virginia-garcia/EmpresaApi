@@ -1,0 +1,26 @@
+using System;
+
+namespace EmpresaApi.Models
+{
+    public class Employees
+    {
+        public int EmployeeID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Title { get; set; }
+        public string Country { get; set; }
+        public DateTime BirthDate { get; set; } 
+
+       
+        public int Age
+        {
+            get
+            {
+                var today = DateTime.Today;
+                var age = today.Year - BirthDate.Year;
+                if (BirthDate.Date > today.AddYears(-age)) age--;
+                return age;
+            }
+        }
+    }
+}

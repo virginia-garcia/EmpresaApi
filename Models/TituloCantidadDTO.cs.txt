@@ -1,0 +1,9 @@
+namespace EmpresaApi.Models
+{
+    
+    public class TituloCantidadDTO
+    {
+        public string Titulo { get; set; }
+        public int Cantidad { get; set; }
+    }
+}
