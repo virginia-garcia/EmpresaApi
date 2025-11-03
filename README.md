@@ -24,14 +24,21 @@ Pasos para Ejecutar:
 La API se iniciará y estará disponible, por defecto, en https://localhost:7000 
 5.Acceder a Swagger/OpenAPI:Abre tu navegador y navega a la URL de Swagger para ver y probar todos los endpoints disponibles:https://localhost:7000/swagger/index.html
 
-#### 🧭 Endpoints Disponibles
-##### GET api/TodosLosEmpleados: Devuelve la lista completa de empleados.
-###### GET api/CantidadEmpleados: Devuelve el número total de empleados en la empresa.
-#######  GET api/EmpleadoPorID?empleadoID=5: Devuelve la información de un empleado a partir de su ID.
-######### 	GET api/EmpleadosPorNombre?nombreEmpleado=””: Devuelve el empleado cuyo nombre coincida con el valor ingresado.
-o	GET api/IDempleadoPorTitulo?titulo=Manager: Devuelve el empleado que ocupa el puesto indicado.
-o	GET api/EmpleadoPorPais?country=””: Devuelve un empleado que viva en el país especificado.
-o	GET api/TodosLosEmpleadosPorPais?country=””: Devuelve todos los empleados de un país determinado.
-o	GET api/ElEmpleadoMasGrande: Devuelve el empleado de mayor edad.
+#### 🧭 Endpoints Disponibles (Consulta de Empleados)
+GET /api/Empleados/TodosLosEmpleados: Devuelve la lista completa de empleados.
+
+GET /api/Empleados/CantidadEmpleados: Devuelve el número total de empleados en la empresa.
+
+GET /api/Empleados/EmpleadoPorID?empleadoID={id}: Devuelve la información de un empleado a partir de su ID.
+
+GET /api/Empleados/EmpleadosPorNombre?nombreEmpleado={nombre}: Devuelve el empleado cuyo nombre coincida con el valor ingresado.
+
+GET /api/Empleados/IDempleadoPorTitulo?titulo={puesto}: Devuelve el empleado que ocupa el puesto indicado.
+
+GET /api/Empleados/EmpleadoPorPais?country={país}: Devuelve un empleado que viva en el país especificado.
+
+GET /api/Empleados/TodosLosEmpleadosPorPais?country={país}: Devuelve todos los empleados de un país determinado.
+
+GET /api/Empleados/ElEmpleadoMasGrande: Devuelve el empleado de mayor edad
 
 
