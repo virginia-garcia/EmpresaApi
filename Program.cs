@@ -4,9 +4,9 @@ using EmpresaApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args)
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EmpresaDbContext>(options =>
-    options.UseInMemoryDatabase("EmpresaDB")); 
-
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 
@@ -35,3 +35,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
