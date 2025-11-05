@@ -25,25 +25,7 @@ namespace EmpresaApi.Data
         public DbSet<Category> Categories { get; set; }
 
         
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
-            modelBuilder.Entity<Employees>().HasData(
-                new Employees { EmployeeID = 1, FirstName = "Ana", LastName = "Gomez", Title = "Manager", Country = "Argentina", BirthDate = new System.DateTime(1980, 5, 10) },
-                new Employees { EmployeeID = 2, FirstName = "Juan", LastName = "Perez", Title = "Developer", Country = "Chile", BirthDate = new System.DateTime(1995, 12, 25) },
-                new Employees { EmployeeID = 3, FirstName = "Maria", LastName = "Lopez", Title = "Developer", Country = "Argentina", BirthDate = new System.DateTime(1975, 1, 1) }
-            );
-
-            modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryID = 1, CategoryName = "Bebidas" },
-                new Category { CategoryID = 2, CategoryName = "Comestibles" }
-            );
-
-            modelBuilder.Entity<Products>().HasData(
-                new Products { ProductID = 1, ProductName = "Coca Cola", CategoryID = 1 },
-                new Products { ProductID = 2, ProductName = "Agua Mineral", CategoryID = 1 },
-                new Products { ProductID = 3, ProductName = "Pan Integral", CategoryID = 2 }
-            );
-        }
+        
     }
 }
+
